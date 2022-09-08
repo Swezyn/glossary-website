@@ -1,0 +1,223 @@
+.container{
+    width: 100%;
+    min-height: calc(100vh - var(--header-height));
+    padding: 5vh 5vw;
+}
+
+.flexrow{
+    width: 100%;
+    display: flex;
+    padding: 2vh 0;
+    overflow-x: auto;
+}
+
+.flexcenter{
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.centercontainer{
+    width: 100%;
+    padding: 5vh 5vw;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container label, .centercontainer label{
+    font-size: clamp(1rem, 1.8vh, 2vw);
+    line-height: 2;
+}
+
+.buttonbox{
+    all: unset;
+    background-color: white;
+    border-radius: var(--radius);
+    width: fit-content;
+    padding: 3vh 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s;
+    margin-right: 2vw;
+    border: 1px solid var(--border);
+}
+
+.buttonbox:hover{
+    box-shadow: var(--light-shadow);
+}
+.buttonbox h2{
+    font-size: clamp(1rem, 2vw, 2rem);
+    margin-bottom: 2vh;
+}
+.buttonbox button{
+    all: unset;
+    cursor: pointer;
+    background-color: var(--light-grey);
+    display: flex;
+    align-items: center;
+    margin: 0 0.5vw;
+    padding: 0.5vh 1vw;
+    border-radius: var(--radius);
+    transition: 0.25s;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.buttonbox button:hover{
+    box-shadow: var(--light-shadow);
+    background-color: var(--accent4);
+    color: white;
+}
+
+.flexcenter{
+    display: flex;
+    align-items: center;
+}
+
+.glossarys{
+    width: 75%;
+    margin-top: 5vh;
+}
+
+@media screen and (max-width: 768px) {
+    .glossarys{
+        width: 100%;
+    }
+}
+
+.glossarysh3{
+    width: 100%;
+    padding: 1vh 2vw 0 2vw;
+    display: flex;
+}
+
+.glossarysh3 > *{
+    width: 50%;
+}
+
+.glossarysh3 h3{
+    font-weight: 500;
+}
+
+.glossary{
+    width: 100%;
+    background-color: white;
+    color: var(--text-medium);
+    padding: 1vh 2vw;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 0.5vh;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--light-shadow);
+}
+
+.glossary p{
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.glossary > *{
+    width: 50%;
+}
+
+.glossaryinnerbox{
+    display: flex;
+}
+
+.glossaryinnerbox p{
+    padding: 0.5vh 1vw;
+    margin: 0 0.5vw;
+    border: 1px solid var(--border);
+    text-transform: uppercase;
+    border-radius: var(--radius);
+    background-color: var(--light-grey);
+}
+
+.garbagebutton{
+    all: unset;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-grey);
+    border-radius: var(--radius);
+    transition: 0.25s;
+}
+
+@media screen and (max-width: 768px) {
+    .garbagebutton{
+        left: 85%;
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.garbagebutton:hover{
+    background-color: var(--accent1);
+    color: white;
+}
+
+.textinput{
+    width: 100%;
+    margin: 1vh 0;
+}
+
+.alert{
+    position: absolute;
+    width: clamp(15rem, 25vw, 35rem);
+    align-self: center;
+    padding: 2vh 2vw;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    font-size: clamp(0.75rem, 1.75vw, 1.25rem);
+}
+
+.alert p{
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.success{
+    background-color: var(--success-green-bg);
+    color: var(--success-green);
+}
+
+.failed{
+    background-color: var(--failed-red-bg);
+    color: var(--failed-red);
+}
+
+.close{
+    background-color: var(--warning-yellow-bg);
+    color: var(--warning-yellow);
+}
+
+/* Landing Page */
+
+.heading{
+    max-width: 70ch;
+    text-align: center;
+}
+
+.heading h1{
+    font-size: clamp(1.625rem, 0.73rem + 4.36vw, 4rem);
+    font-weight: 700;
+}
+
+.heading p{
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.45rem);
+    margin-bottom: 4vh;
+}

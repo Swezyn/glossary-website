@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    /* font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; */
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    color: var(--text-medium);
+}
+
+:root{
+    /* Colors */
+    --accent1: rgb(229, 127, 132);
+    --accent2: rgb(66, 151, 160);
+    --accent3: rgb(47, 80, 97);
+    --accent4: rgb(157, 204, 209);
+    --text-lighter: rgb(153, 153, 153);
+    --text-medium: rgb(51, 51, 51);
+    --light-grey: rgb(248, 249, 250);
+    --bg: rgb(248, 249, 250);
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --footer-bg: rgb(255, 255, 255);
+    --border: rgb(233, 236, 239);
+    --success-green: rgb(75, 181, 67);
+    --success-green-bg: rgb(215, 251, 218);
+    --failed-red: rgb(255,114,118);
+    --failed-red-bg: rgba(255,114,118, 0.5);
+    --warning-yellow: rgb(238, 210, 2);
+    --warning-yellow-bg: rgba(238, 210, 2, 0.25);
+    /* Dimensions */
+    --radius: 8px;
+    --header-height: 72px;
+    --footer-height: 96px;
+    --light-shadow: 10px 10px 15px -3px rgba(0,0,0,0.05);
+    --medium-shadow: 10px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+body{
+    background-color: var(--bg);
+    min-height: 100vh;
+}

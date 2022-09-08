@@ -1,0 +1,10 @@
+.glossary a{
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    padding: 1vh 5vw;
+    margin: 0.5vh 0;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: white;
+}

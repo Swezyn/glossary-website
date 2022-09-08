@@ -1,0 +1,33 @@
+.container{
+    height: var(--footer-height);
+    border-top: 1px solid var(--border);
+    padding: 0 10vw;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--footer-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo{
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.nav{
+    display: flex;
+    list-style-type: none;
+    color: var(--text-medium);
+}
+
+.nav li{
+    margin-right: 1rem;
+}
+
+.nav a{
+    color: var(--text-medium);
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+}

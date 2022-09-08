@@ -1,0 +1,40 @@
+.button{
+    font-size: 1rem;
+    background-color: var(--accent1);
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: 0.25s;
+    margin: 0 0.5vw;
+    width: fit-content;
+    border: 1px solid var(--border);
+}
+
+.button:disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.button:hover{
+    filter: brightness(1.2);
+}
+
+@media screen and (max-width: 768px) {
+    .button{
+        padding: 0.25rem 1.5rem;
+    }
+}
+
+.accent1{background-color: var(--accent1);}
+
+.accent2{background-color: var(--accent2);}
+
+.accent3{background-color: var(--accent3);}
+
+.accent4{background-color: var(--accent4);}
+
+.white{background-color: white; color: var(--text-medium);}
+
+.grey{background-color: var(--light-grey); color: var(--text-medium);}
