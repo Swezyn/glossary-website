@@ -25,7 +25,7 @@ export default function Popup(props) {
 
   return (
     <>
-        <AnimatePresence initial={false} exitBeforeEnter={true}>
+        {/* <AnimatePresence initial={false} exitBeforeEnter={true}> */}
             {props.props.open && !props.loading &&
             <motion.div className={styles.container}  style={canClose && {backgroundColor: "#8b000020"}} onClick={(e) => TryClose(e)} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0, transition: {duration: 0}}}>
                 <motion.div className={styles.wrapper} onClick={(e) => e.stopPropagation()} initial={{y: "-100vh"}} animate={{y: "0", transition: {duration: 0.25, type: "spring", damping: 100, stiffness: 1000}}} exit={{y: "100vh"}}>
@@ -36,8 +36,8 @@ export default function Popup(props) {
                 </motion.div>
             </motion.div>
             }
-        </AnimatePresence>
-        <AnimatePresence initial={false} exitBeforeEnter={true}>
+        {/* </AnimatePresence> */}
+        {/* <AnimatePresence initial={false} exitBeforeEnter={true}> */}
             {props.loading && props.props.open ?
             <motion.div className={styles.container} style={canClose && {backgroundColor: "#8b000020"}} onClick={(e) => TryClose(e)} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0, transition: {duration: 0}}}>
                 <motion.div className={styles.loadingwrapper} onClick={(e) => e.stopPropagation()} initial={{scale: "0"}} animate={{scale: "100%", transition: {duration: 0.25, type: "spring", damping: 100, stiffness: 1000}}} exit={{scale: "0"}}>
@@ -48,7 +48,7 @@ export default function Popup(props) {
                 
             </motion.div>
             }
-        </AnimatePresence>
+        {/* </AnimatePresence> */}
     </>
   )
 }
