@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ReadCollectionSnapshot } from '../../config/firebase/storage'
-import styles from '../../styles/pages.module.css'
+import styles from '../../styles/page.module.css'
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 

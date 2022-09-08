@@ -10,7 +10,7 @@ import { useAuth } from '../../config/firebase/auth'
 
 export default function CreateGlossary(props) {
 
-  const user = useAuth()
+  const user = useAuth() || null
 
   const [name, setName] = useState("")
   const [error, setError] = useState("")
@@ -32,7 +32,7 @@ export default function CreateGlossary(props) {
 
     try {
       setLoading(true)
-      const id = await CreateDocument("glossarys", name, user.uid)
+      const id = await CreateDocument("glossarys", name, user?.uid)
       setLoading(false)
       router.push(`/glossary/${id}`)
     } 
