@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/page.module.css'
 import { useAuth } from '../config/firebase/auth'
 import { useEffect } from 'react'
@@ -7,17 +7,14 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Button } from '../components/Components'
 import {motion} from 'framer-motion'
+import Login from '../components/Popups/Login'
 
 export default function Home() {
 
   const user = useAuth()
   const router = useRouter()
 
-  useEffect(() => {
-    if (user) {
-      router.push("/dashboard")
-    }
-  }, [])
+  const [signupOpen, setSignupOpen] = useState(false)
 
   return (
     <>
@@ -27,11 +24,12 @@ export default function Home() {
           <motion.h1 initial={{scale: "75%"}} animate={{scale: "100%"}}>Ace your tests</motion.h1>
           <motion.p initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.1}}>The best way to stay organized, keep track and practise.</motion.p>
           <div className={styles.flexcenter}>
-            <motion.div initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.2}}><Button color="white" style={{border: "2px solid var(--accent2)"}}>Browse glossarys</Button></motion.div>
-            <motion.div initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.3}}><Button color="accent2">Sign Up</Button></motion.div>
+            <motion.div initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.2}}><Button onClick={() => router.push("/glossary")} color="white" style={{border: "2px solid var(--accent2)"}}>Browse glossarys</Button></motion.div>
+            <motion.div initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.3}}><Button onClick={() => setSignupOpen(true)} color="accent2">Sign Up</Button></motion.div>
           </div>
         </div>
       </div>
+      <Login open={signupOpen} setOpen={setSignupOpen} type="signup" />
       <Footer />
     </>
   )

@@ -71,6 +71,8 @@ export default function Header() {
               </button>
             </Menu.Target>
             <Menu.Dropdown>
+              <Menu.Label>Links</Menu.Label>
+              <Menu.Item onClick={() => {setUserMenuOpen(false); router.push("/dashboard")}}>Dashboard</Menu.Item>
               <Menu.Label>Settings</Menu.Label>
               <Menu.Item onClick={() => {setUserMenuOpen(false);}}>Account settings</Menu.Item>
               <Menu.Item style={{backgroundColor: "var(--accent1)", color: "white"}} onClick={() => {setUserMenuOpen(false);logOut()}}>Logout</Menu.Item>
@@ -90,12 +92,16 @@ export default function Header() {
               <Menu.Dropdown>
                 {user ? <>
                   <Menu.Item><Input style={{width: "100%"}} className={styles.searchbar} type="text" placeholder='Enter glossary name' variant='filled' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} icon={<FaSearch />} onKeyDown={(e) => {if (e.key === 'Enter'){Search()}}}/></Menu.Item>
+                  <Menu.Label>Links</Menu.Label>
+                  <Menu.Item onClick={() => {setUserMenuOpen(false); router.push("/dashboard")}}>Dashboard</Menu.Item>
                   <Menu.Label>Settings</Menu.Label>
                   <Menu.Item onClick={() => {setBurgerOpen(false);}}>Account settings</Menu.Item>
                   <Menu.Item style={{backgroundColor: "var(--accent1)", color: "white"}} onClick={() => {setBurgerOpen(false);logOut()}}>Logout</Menu.Item>
                 </> :
                 <>
                   <Menu.Item><Input style={{width: "100%"}} className={styles.searchbar} type="text" placeholder='Enter glossary name' variant='filled' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} icon={<FaSearch />} onKeyDown={(e) => {if (e.key === 'Enter'){Search()}}}/></Menu.Item>
+                  <Menu.Label>Links</Menu.Label>
+                <Menu.Item onClick={() => {setUserMenuOpen(false); router.push("/dashboard")}}>Dashboard</Menu.Item>
                   <Menu.Label>Account</Menu.Label>
                   <Menu.Item style={{backgroundColor: "var(--accent4)", color: "white"}} onClick={() => {setBurgerOpen(false);setLoginOpen(true);setLogOrSign("signup")}}>Sign up</Menu.Item>
                   <Menu.Item onClick={() => {setBurgerOpen(false);setLoginOpen(true);setLogOrSign("login")}}>Log in</Menu.Item>

@@ -12,6 +12,7 @@ import { MdOutlineKeyboardArrowRight, MdModeEdit } from 'react-icons/md'
 import { GoPlus, GoTrashcan } from 'react-icons/go'
 import styles from '../../../styles/page.module.css'
 import { UpdateDocument } from '../../../config/firebase/storage'
+import Link from 'next/link'
 
 export default function Glossary() {
 
@@ -19,7 +20,7 @@ export default function Glossary() {
 
   const [editGlossaryOpen, setEditGlossaryOpen] = useState(false)
   const [addGlossaryOpen, setAddGlossaryOpen] = useState(false)
-  const [document, setDoc] = useState(null)
+  const [glossary, setGlossary] = useState(null)
 
   const router = useRouter()
   const id : string = router.query.id as string
@@ -27,18 +28,18 @@ export default function Glossary() {
   useEffect(() => {
     if (!id) return
     return onSnapshot(doc(db, "glossarys", id), (doc) => {
-      setDoc({...doc.data(), id: doc.id})
+      setGlossary({...doc.data(), id: doc.id})
     });
   }, [id])
 
   useEffect(() => {
-    if (user && user.uid == document.Info.Creator && document && (!document.Info.Lang1 || !document.Info.Lang2)){
+    if (user && user.uid == glossary?.Info?.Creator && glossary && (!glossary.Info.Lang1 || !glossary.Info.Lang2)){
       setEditGlossaryOpen(true)
     }
-    else if (user && user.uid == document.Info.Creator && document && !document.Glossary){
+    else if (user && user.uid == glossary?.Info?.Creator && glossary && !glossary.Glossary){
       setAddGlossaryOpen(true)
     }
-  }, [document, editGlossaryOpen, addGlossaryOpen])
+  }, [glossary, editGlossaryOpen, addGlossaryOpen])
 
   function Practise(query){
     router.push({
@@ -48,11 +49,11 @@ export default function Glossary() {
   }
 
   async function RemoveGlossary(index){
-    const docRef = doc(db, "glossarys", document.id)
+    const docRef = doc(db, "glossarys", glossary.id)
     
     try{
       await updateDoc(docRef, {
-        Glossary: arrayRemove(document.Glossary[index])
+        Glossary: arrayRemove(glossary.Glossary[index])
       })
     } catch(error){
       console.log(error)
@@ -63,44 +64,46 @@ export default function Glossary() {
     <>
       <Header />
       <div className={styles.container} >
-        {document ? <>
-          <h1>{document?.Info.Name}</h1>
+        {glossary && glossary?.Info ? <>
+          <h1>{glossary?.Info?.Name}</h1>
           <div className={styles.flexrow}>
             <div className={styles.buttonbox}>
               <h2>Practise Words</h2>
               <div className={styles.flexcenter}>
-                <button onClick={() => Practise({type: 'words', lang: '1-2'})}>{document.Info.Lang1?.toUpperCase()}<MdOutlineKeyboardArrowRight />{document.Info.Lang2?.toUpperCase()}</button>
-                <button onClick={() => Practise({type: 'words', lang: '2-1'})}>{document.Info.Lang2?.toUpperCase()}<MdOutlineKeyboardArrowRight />{document.Info.Lang1?.toUpperCase()}</button>
+                <button onClick={() => Practise({type: 'words', lang: '1-2'})}>{glossary.Info.Lang1?.toUpperCase()}<MdOutlineKeyboardArrowRight />{glossary.Info.Lang2?.toUpperCase()}</button>
+                <button onClick={() => Practise({type: 'words', lang: '2-1'})}>{glossary.Info.Lang2?.toUpperCase()}<MdOutlineKeyboardArrowRight />{glossary.Info.Lang1?.toUpperCase()}</button>
                 <button onClick={() => Practise({type: 'words', lang: 'mixed'})}>Mixed</button>
               </div>
             </div>
             <div className={styles.buttonbox}>
               <h2>Practise Spelling</h2>
               <div className={styles.flexcenter}>
-                <button onClick={() => Practise({type: 'spelling', lang: '1-2'})}>{document.Info.Lang1?.toUpperCase()}<MdOutlineKeyboardArrowRight />{document.Info.Lang2?.toUpperCase()}</button>
-                <button onClick={() => Practise({type: 'spelling', lang: '2-1'})}>{document.Info.Lang2?.toUpperCase()}<MdOutlineKeyboardArrowRight />{document.Info.Lang1?.toUpperCase()}</button>
+                <button onClick={() => Practise({type: 'spelling', lang: '1-2'})}>{glossary.Info.Lang1?.toUpperCase()}<MdOutlineKeyboardArrowRight />{glossary.Info.Lang2?.toUpperCase()}</button>
+                <button onClick={() => Practise({type: 'spelling', lang: '2-1'})}>{glossary.Info.Lang2?.toUpperCase()}<MdOutlineKeyboardArrowRight />{glossary.Info.Lang1?.toUpperCase()}</button>
                 <button onClick={() => Practise({type: 'spelling', lang: 'mixed'})}>Mixed</button>
               </div>
             </div>
-            {user && user.uid == document.Info.Creator &&
+            {user && user.uid == glossary.Info.Creator &&
           <>
               <button className={styles.buttonbox} style={{cursor: "pointer"}} onClick={() => setAddGlossaryOpen(true)}><GoPlus size={50} /></button>
               <button className={styles.buttonbox} style={{cursor: "pointer"}} onClick={() => setEditGlossaryOpen(true)}><MdModeEdit size={50} /></button>
-              <EditGlossary open={editGlossaryOpen} setOpen={setEditGlossaryOpen} doc={document} />
-              <AddGlossary open={addGlossaryOpen} setOpen={setAddGlossaryOpen} doc={document}/>
+              <EditGlossary open={editGlossaryOpen} setOpen={setEditGlossaryOpen} doc={glossary} />
+              <AddGlossary open={addGlossaryOpen} setOpen={setAddGlossaryOpen} doc={glossary}/>
           </>
           }
           </div>
-          <div className={styles.glossarys}>
-            <h2>Word list</h2>
-            <div className={styles.glossarysh3}>
-              <h3>{languages.find(obj => {return obj.value == document.Info.Lang1})?.label}</h3>
-              <h3>{languages.find(obj => {return obj.value == document.Info.Lang2})?.label}</h3>
+          <div className={styles.verticallist}>
+              <h2>Recent glossarys</h2>
+              <div style={{display: "flex"}}>
+                <h3 style={{width: "45%"}}>{languages.find(obj => {return obj.value == glossary.Info.Lang1})?.label}</h3>
+                <h3 style={{width: "45%"}}>{languages.find(obj => {return obj.value == glossary.Info.Lang2})?.label}</h3>
+              </div>
+              <ul>
+                {glossary?.Glossary?.length > 0 ? glossary.Glossary.map((glossary, i) => {
+                  return <Link href={`/glossary/${glossary.id}`}><a><li key={glossary.id}><p style={{width: "50%"}}>{glossary.Lang1}</p><p style={{width: "45%"}}>{glossary.Lang2}</p><button onClick={() => RemoveGlossary(i)} className={styles.garbagebutton}><GoTrashcan /></button></li></a></Link>
+                }) : <><li><div className={styles.skeleton} /></li><li><div className={styles.skeleton} /></li><li><div className={styles.skeleton} /></li></>}
+              </ul>
             </div>
-            {document?.Glossary?.map((doc, i) => {
-                return <div key={i} className={styles.glossary}><p>{doc.Lang1}</p> <p>{doc.Lang2}</p>{user && user.uid == document.Info.Creator && <button onClick={() => RemoveGlossary(i)} className={styles.garbagebutton}><GoTrashcan /></button>}</div>
-            })}
-          </div>
           </> :
           <>
               

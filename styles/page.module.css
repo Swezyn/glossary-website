@@ -144,21 +144,21 @@
 
 .garbagebutton{
     all: unset;
-    position: absolute;
     width: 32px;
     height: 32px;
-    left: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--light-grey);
     border-radius: var(--radius);
     transition: 0.25s;
+    color: var(--text-medium);
+    position: absolute;
+    right: 1vw;
 }
 
 @media screen and (max-width: 768px) {
     .garbagebutton{
-        left: 85%;
         width: 24px;
         height: 24px;
     }
@@ -220,4 +220,69 @@
 .heading p{
     font-size: clamp(1.125rem, 1rem + 0.5vw, 1.45rem);
     margin-bottom: 4vh;
+}
+
+.withsidebar{
+    display: flex;
+}
+
+.verticallist{
+    width: 65%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background-color: white;
+}
+
+.verticallist h2{
+    padding: 2vh 3vw 1vh 3vw;
+    width: 100%;
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.45rem);
+}
+
+.verticallist h3{
+    padding: 2vh 3vw 1vh 3vw;
+    width: 100%;
+    font-size: clamp(0.75rem, 0.75rem + 0.5vw, 1rem);
+    font-weight: 500;
+}
+
+.verticallist li{
+    width: 100%;
+    list-style-type: none;
+    padding: 1.5vh 3vw;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.verticallist a{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.verticallist .colorbox{
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.verticallist p{
+    font-size: clamp(0.75rem, 0.5rem + 1.5vw, 1rem);
+}
+
+.verticallist .skeleton{
+    height: clamp(0.75rem, 0.5rem + 1.5vw, 1rem);
+    width: 100%;
+    background-color: var(--light-grey);
+    border-radius: 4px;
+}
+
+.cornerbuttons{
+    position: fixed;
+    bottom: 2vh;
+    right: 2vw;
 }

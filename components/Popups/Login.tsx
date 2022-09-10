@@ -67,8 +67,10 @@ export default function Login(props) {
 
   useEffect(() => {
     if (user !== undefined && user !== null){
-      // router.push('/dashboard')
-      props.setOpen(false)
+      if (props.open){
+        props.setOpen(false)
+        router.push('/dashboard')
+      }
     }
   }, [user])
 
