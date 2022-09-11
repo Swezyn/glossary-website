@@ -16,6 +16,10 @@
     justify-content: center;
 }
 
+.flex{
+    display: flex;
+}
+
 .wrapper{
     width: 100%;
     display: flex;
@@ -226,11 +230,25 @@
     display: flex;
 }
 
+@media screen and (max-width: 768px) {
+    .withsidebar{
+        padding-left: 76px;
+    }
+}
+
 .verticallist{
     width: 65%;
+    height: fit-content;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     background-color: white;
+    margin: 2vh 0;
+}
+
+@media screen and (max-width: 768px) {
+    .verticallist{
+        width: 100%;
+    }
 }
 
 .verticallist h2{
@@ -253,6 +271,7 @@
     border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: relative;
 }
 
@@ -279,6 +298,25 @@
     width: 100%;
     background-color: var(--light-grey);
     border-radius: 4px;
+    padding: 0 2vw;
+    font-size: clamp(0.5rem, 0.5rem + 0.5vw, 1rem);
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    color: var(--text-lighter);
+}
+
+.verticallist .flex{
+    display: flex;
+    align-items: center;
+}
+
+.verticallist .info{
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.25rem 1rem;
+    margin-left: 1rem;
+    background-color: var(--light-grey);
 }
 
 .cornerbuttons{

@@ -65,7 +65,7 @@ export default function Header() {
           <Menu width={300} position="bottom" transition="pop" opened={userMenuOpen}>
             <Menu.Target>
               <button className={`${styles.usermenubutton} ${userMenuOpen && styles.active}`} onClick={() => setUserMenuOpen(!userMenuOpen)}>
-                  <Avatar size={35} src='' alt='User Image' radius='xl' color="blue">{user?.displayName[0]}</Avatar>
+                  <Avatar size={35} src='' alt='User Image' radius='xl' color="blue">{user?.displayName && user.displayName[0]}</Avatar>
                   <p>{user?.displayName}</p>
                   <FaChevronDown size={12}/>
               </button>

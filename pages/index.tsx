@@ -25,7 +25,7 @@ export default function Home() {
           <motion.p initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.1}}>The best way to stay organized, keep track and practise.</motion.p>
           <div className={styles.flexcenter}>
             <motion.div initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.2}}><Button onClick={() => router.push("/glossary")} color="white" style={{border: "2px solid var(--accent2)"}}>Browse glossarys</Button></motion.div>
-            <motion.div initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.3}}><Button onClick={() => setSignupOpen(true)} color="accent2">Sign Up</Button></motion.div>
+            <motion.div initial={{scale: "75%"}} animate={{scale: "100%"}} transition={{delay: 0.3}}><Button onClick={() => user ? router.push("/dashboard") : setSignupOpen(true)} color="accent2">{user ? "Dashboard" : "Sign Up"}</Button></motion.div>
           </div>
         </div>
       </div>

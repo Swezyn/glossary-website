@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, TwitterAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, {useEffect, useState} from "react";
 import { getAuth } from "firebase/auth";
 import { app } from './firebase'
@@ -7,7 +7,12 @@ export const auth = getAuth(app);
 
 export const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
+    return signInWithPopup(auth, provider)
+}
+
+export const twitterSignIn = () => {
+  const provider = new TwitterAuthProvider();
+  signInWithPopup(auth, provider)
 }
 
 export const emailSignIn = (email, password) => {

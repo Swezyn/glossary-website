@@ -4,6 +4,7 @@
     background-color: white;
     border-right: 1px solid var(--border);
     transition: 0.25s;
+    z-index: 998;
 }
 
 .buttons{
@@ -11,6 +12,14 @@
     display: flex;
     flex-direction: column;
     padding: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    .container{
+        position: fixed;
+        left: 0;
+        top: var(--header-height);
+    }
 }
 
 .buttons button{

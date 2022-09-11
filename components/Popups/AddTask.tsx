@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Popup from './Popup'
 import {Button} from '../Components'
-import {Input, Select} from   '@mantine/core'
+import {Input, Select} from '@mantine/core'
 import styles from '../../styles/popup.module.css'
 import { useMediaQuery } from '@mantine/hooks'
 import { useRouter } from 'next/router'
@@ -17,6 +17,8 @@ export default function AddTask(props) {
 
   const [heading, setHeading] = useState("")
   const [subject, setSubject] = useState("")
+  const [endDate, setEndDate] = useState(new Date().getDate())
+  const [endTime, setEndTime] = useState(new Date().getTime())
   const [error, setError] = useState({Heading: "", Subject: ""})
 
   const [canAdd, setCanAdd] = useState(true)
@@ -72,6 +74,8 @@ export default function AddTask(props) {
             <Input invalid={error.Heading.length > 0} className={styles.textfield} value={heading} onChange={(e) => {setHeading(e.target.value); setError({...error, Heading: ""})}} placeholder="Enter task name" variant='filled' size={matches ? "md" : "xs"}/>
           </Input.Wrapper>
           <Select error={error.Subject} placeholder={subjects?.length <= 0 && "Please add a subject"} label="Select subject" value={subject} onChange={(e) => setSubject(e)} data={subjects} style={{width:"80%", transform: !matches && "translateX(-10%)"}} rightSection={<button onClick={() => setAddSubjectOpen(true)} className={styles.inputbutton} color="grey">Add</button>} rightSectionWidth={matches ? 100 : 50} variant='filled' size={matches ? "md" : "xs"}/>
+          {/* <input type="date" value={endDate} />
+          <input type="time" value={endTime} /> */}
           <div style={{margin: "1vw 0"}} />
           <Button disabled={!canAdd} onClick={() => Add()}>Add</Button>
         </div>

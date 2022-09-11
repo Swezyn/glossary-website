@@ -34,6 +34,7 @@ export default function CreateGlossary(props) {
       setLoading(true)
       const id = await CreateDocument("glossarys", name, user?.uid)
       setLoading(false)
+      props.setOpen(false)
       router.push(`/glossary/${id}`)
     } 
     catch {

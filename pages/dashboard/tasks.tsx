@@ -7,15 +7,20 @@ import { Button } from '../../components/Components'
 import { collection, doc, onSnapshot } from 'firebase/firestore'
 import { useAuth } from '../../config/firebase/auth'
 import { db } from '../../config/firebase/firebase'
+import { motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 
 export default function tasks() {
 
     const user = useAuth()
+    const router = useRouter()
 
     const [tasks, setTasks] = useState([])
     const [subjects, setSubjects] = useState([])
 
     const [addTaskOpen, setAddTaskOpen] = useState(false)
+
+    const [theTimeout, setTheTimeout] = useState(undefined)
 
     useEffect(() => {
       if (!user) return
@@ -37,6 +42,13 @@ export default function tasks() {
       })
     }, [user])
 
+    useEffect(() => {
+      if (!user)
+        setTheTimeout(setTimeout(() => router.push("/"), 500))
+      else
+        return clearTimeout(theTimeout)
+    }, [user])
+
   return (
     <>
     <Header/>
@@ -48,15 +60,15 @@ export default function tasks() {
               <h2>Due Today</h2>
               <ul>
                 {tasks.length > 0 ? tasks.map((task, i) => {
-                  return <li key={task.id}><div className={styles.colorbox} style={{backgroundColor: subjects.find(obj => {return obj.Name == task.Subject})?.Color}}/><p>{task.Heading}</p></li>
-                }) : <><li><div className={styles.skeleton} /></li><li><div className={styles.skeleton} /></li><li><div className={styles.skeleton} /></li></>}
+                  return <li key={task.id}><span className={styles.flex}><div className={styles.colorbox} style={{backgroundColor: subjects.find(obj => {return obj.Name == task.Subject})?.Color}}/><p>{task.Heading}</p></span></li>
+                }) : <li><p className={styles.skeleton}>You have no tasks</p></li>}
               </ul>
             </div>
         </div>
     </div>
-    <div className={styles.cornerbuttons}>
+    <motion.div className={styles.cornerbuttons} initial={{bottom: "-5vh"}} animate={{bottom: "2vh"}} transition={{delay: 0.25}}>
       <Button onClick={() => setAddTaskOpen(true)} color="accent4">Add Task</Button>
-    </div>
+    </motion.div>
     <AddTask open={addTaskOpen} setOpen={setAddTaskOpen} />
     </>
   )
