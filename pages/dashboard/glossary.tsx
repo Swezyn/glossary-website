@@ -26,7 +26,7 @@ export default function Glossary() {
       return onSnapshot(collection(db, "glossarys"), (snapshot) => {
         // setGlossarys(snapshot.docs.map((doc) => (doc.data().Info.Creator == user?.uid && {...doc.data(), id: doc.id})))
 
-        const allGlossarys = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
+        const allGlossarys = snapshot.docs.map((doc) => ({...doc.data(), Info: doc.data().Info, id: doc.id}))
         setMyGlossarys(allGlossarys.filter(doc => {return doc.Info?.Creator == user.uid}))
         setGlossarys(allGlossarys.filter(doc => {return doc.Info?.Creator != user.uid}))
       })
